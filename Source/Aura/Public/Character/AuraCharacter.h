@@ -17,9 +17,15 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase
 public:
 
 	AAuraCharacter();
+	virtual void OnRep_PlayerState() override;
+	virtual void PossessedBy(AController* NewController) override;
 
 protected:
 
+
 	UPROPERTY(EditAnywhere)
 	float CameraRotationRate = 540.0f;
+
+private:
+	void InitAbilityActorInfo();
 };
