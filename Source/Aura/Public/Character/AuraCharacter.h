@@ -22,10 +22,9 @@ public:
 
 protected:
 
-
 	UPROPERTY(EditAnywhere)
 	float CameraRotationRate = 540.0f;
 
 private:
-	void InitAbilityActorInfo();
+	virtual void InitAbilityActorInfo() override;
 };
