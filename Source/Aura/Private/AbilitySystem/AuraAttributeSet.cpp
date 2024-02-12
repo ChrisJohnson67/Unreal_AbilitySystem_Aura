@@ -10,8 +10,6 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(50.f);
-	InitMana(50.f);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -154,17 +152,17 @@ void UAuraAttributeSet::OnRep_ArmorPen(const FGameplayAttributeData& OldArmorPen
 
 void UAuraAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldBlockChance)
 {
-		GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, BlockChance, OldBlockChance);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, BlockChance, OldBlockChance);
 }
 
 void UAuraAttributeSet::OnRep_CritHitChance(const FGameplayAttributeData& OldCritHitChance)
 {
-		GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CritHitChance, OldCritHitChance);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CritHitChance, OldCritHitChance);
 }
 
 void UAuraAttributeSet::OnRep_CritHitDamage(const FGameplayAttributeData& OldCritHitDamage)
 {
-			GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CritHitDamage, OldCritHitDamage);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CritHitDamage, OldCritHitDamage);
 }
 
 void UAuraAttributeSet::OnRep_CritHitResist(const FGameplayAttributeData& OldCritHitResist)
@@ -174,7 +172,7 @@ void UAuraAttributeSet::OnRep_CritHitResist(const FGameplayAttributeData& OldCri
 
 void UAuraAttributeSet::OnRep_HealthRegen(const FGameplayAttributeData& OldHealthRegen)
 {
-		GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, HealthRegen, OldHealthRegen);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, HealthRegen, OldHealthRegen);
 }
 
 void UAuraAttributeSet::OnRep_ManaRegen(const FGameplayAttributeData& OldManaRegen)

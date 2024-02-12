@@ -71,4 +71,5 @@ int32 AAuraCharacter::GetPlayerLevel()
 	{
 		return AuraPlayerState->GetPlayerLevel();
 	}
+	return 1;
 }
