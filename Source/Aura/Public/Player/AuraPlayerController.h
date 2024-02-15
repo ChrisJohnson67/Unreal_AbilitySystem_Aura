@@ -19,7 +19,7 @@ UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
 public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
@@ -36,6 +36,9 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 
 	UPROPERTY(EditAnywhere)
+	TObjectPtr<UInputAction> ShiftAction;
+
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
@@ -46,8 +49,13 @@ private:
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
 
+	bool bShiftKeyDown = false;
+	void ShiftPressed() { bShiftKeyDown = true; };
+	void ShiftReleased() { bShiftKeyDown = false; };
+
 	void CursorTrace();
 	void AutoRun();
+	FHitResult CursorHit;
 	IEnemyInterface* LastActor;
 	IEnemyInterface* ThisActor;
 
