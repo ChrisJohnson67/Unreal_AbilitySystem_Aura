@@ -26,6 +26,11 @@ public:
 	virtual int32 GetPlayerLevel();
 	virtual FVector GetCombatSocketLocation();
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UAnimMontage* GetHitReactMontage();
+
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void UpdateFacingTarget(const FVector& Target);
+
+	virtual void Die() = 0;
 };

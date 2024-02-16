@@ -65,3 +65,18 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* World
 	ApplyGameplayEffectToSelf(AuraGM->CharacterClassInfo->SecondaryAttributes, Level, ASC);
 	ApplyGameplayEffectToSelf(AuraGM->CharacterClassInfo->VitalAttributes, Level, ASC);
 }
+
+void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC)
+{
+	AAuraGameModeBase* AuraGM = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (AuraGM == nullptr)
+		return;
+
+	UCharacterClassInfo* CharacterClassInfo = AuraGM->CharacterClassInfo;
+
+	for (auto Ability : CharacterClassInfo->CommonAbilities)
+	{
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Ability, 1);
+		ASC->GiveAbility(AbilitySpec);
+	}
+}

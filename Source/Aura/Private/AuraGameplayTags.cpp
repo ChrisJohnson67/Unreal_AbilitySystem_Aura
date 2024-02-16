@@ -70,4 +70,13 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 
 	GameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("InputTag.4"),
 		FString("Input tag for 4"));
+
+	//Meta Attribute Tags
+
+	GameplayTags.Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Damage"),
+		FString("Damage"));
+
+	//Effect Tags
+	GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Effects.HitReact"),
+		FString("When a character is playing a hit react anim"));
 }

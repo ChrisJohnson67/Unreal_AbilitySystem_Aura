@@ -14,6 +14,7 @@ struct FInputActionValue;
 class IEnemyInterface;
 class UAuraAbilitySystemComponent;
 class USplineComponent;
+class UDamageTextComponent;
 
 UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
@@ -24,6 +25,9 @@ public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 	UAuraAbilitySystemComponent* GetASC();
+
+	UFUNCTION(Client, Reliable)
+	void ShowDamageNumber(float Damage, ACharacter* TargetCharacter);
 
 protected:
 
@@ -73,4 +77,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> SplineComponent;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 };
