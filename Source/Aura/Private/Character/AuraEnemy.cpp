@@ -60,7 +60,8 @@ void AAuraEnemy::BeginPlay()
 	InitAbilityActorInfo();
 	BindHealthBarDelegates();
 
-	UAuraAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent);
+	if (HasAuthority())
+		UAuraAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent);
 
 	AbilitySystemComponent->RegisterGameplayTagEvent(FAuraGameplayTags::Get().Effect_HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
 		this,
@@ -113,7 +114,8 @@ void AAuraEnemy::InitAbilityActorInfo()
 	if (AuraASC)
 		AuraASC->AbilityActorInfoSet();
 
-	InitializeDefaultAttributes();
+	if (HasAuthority())
+		InitializeDefaultAttributes();
 }
 
 void AAuraEnemy::ShowHealthBar(bool bShow)
