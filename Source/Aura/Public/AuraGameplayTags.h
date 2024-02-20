@@ -49,6 +49,8 @@ public:
 	FGameplayTag Damage_Poison;
 	FGameplayTag Damage_Cold;
 
+	FGameplayTag Abilities_Attack;
+
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 
 	FGameplayTag Effect_HitReact;
