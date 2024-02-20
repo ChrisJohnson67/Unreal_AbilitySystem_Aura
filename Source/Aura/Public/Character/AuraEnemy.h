@@ -12,7 +12,8 @@
 #include "AuraEnemy.generated.h"
 
 class UWidgetComponent;
-
+class UBehaviorTree;
+class AAuraAIController;
 
 
 UCLASS()
@@ -23,6 +24,8 @@ class AURA_API AAuraEnemy : public AAuraCharacter, public IEnemyInterface
 public:
 
 	AAuraEnemy();
+
+	virtual void PossessedBy(AController* NewController) override;
 
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
@@ -35,6 +38,12 @@ public:
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 	bool IsHitReacting() const { return bHitReacting; }
 
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged;
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -45,12 +54,6 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	ECharacterClass CharacterClass = ECharacterClass::Elementalist;
-
-	UPROPERTY(BlueprintAssignable)
-	FOnAttributeChangedSignature OnHealthChanged;
-
-	UPROPERTY(BlueprintAssignable)
-	FOnAttributeChangedSignature OnMaxHealthChanged;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TObjectPtr<UWidgetComponent> HealthBarWidgetComponent;
@@ -66,4 +69,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
 	float LifeSpan = 5.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
+
+	UPROPERTY()
+	TObjectPtr<AAuraAIController> AuraAIController;
 };

@@ -97,10 +97,10 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 		const FGameplayTag DamageTypeTag = Pair.Key;
 		const FGameplayTag ResistTag = Pair.Value;
 
-		checkf(DamageStatics().TagsToCaptureDefs.Contains(ResistTag), TEXT("Missing capture definition for resist tag"));
+		checkf(AuraDamageStatics().TagsToCaptureDefs.Contains(ResistTag), TEXT("Missing capture definition for resist tag [%s]"), *ResistTag.ToString());
 
-		const FGameplayEffectAttributeCaptureDefinition& CaptureDef = DamageStatics().TagsToCaptureDefs[ResistTag];
-		float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageTypeTag);
+		const FGameplayEffectAttributeCaptureDefinition& CaptureDef = AuraDamageStatics().TagsToCaptureDefs[ResistTag];
+		float DamageTypeValue = Spec.GetSetByCallerMagnitude(DamageTypeTag, false);
 
 		float DamageResist = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvaluationParameters, DamageResist);
