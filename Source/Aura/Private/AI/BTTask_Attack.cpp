@@ -6,5 +6,5 @@
 
 EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	return EBTNodeResult::Type();
+	return Super::ExecuteTask(OwnerComp, NodeMemory);
 }

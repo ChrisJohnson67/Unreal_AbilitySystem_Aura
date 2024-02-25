@@ -84,4 +84,9 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 
 	//Effect Tags
 	GameplayTags.Effect_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Effects.HitReact"), FString("When a character is playing a hit react anim"));
+
+	//Montage Tags
+	GameplayTags.Montage_Attack_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Montage.Attack.Weapon"), FString("Attack Montage for Weapon"));
+	GameplayTags.Montage_Attack_RHand = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Montage.Attack.RHand"), FString("Attack Montage for Right Hand"));
+	GameplayTags.Montage_Attack_LHand = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Montage.Attack.LHand"), FString("Attack Montage for Left Hand"));
 }

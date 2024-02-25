@@ -30,6 +30,10 @@ public:
 
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MulticastHandleDeath();
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TArray<FTaggedMontage> AttackMontages;
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -47,9 +51,10 @@ protected:
 	void StartWeaponDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
 
 	/* Combat Interface */
-	virtual FVector GetCombatSocketLocation_Implementation() override;
+	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation() override;
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() const override;
 	/* End Combat Interface */
 
 	bool bDead = false;
@@ -62,6 +67,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponSocketName = "WeaponHandSocket";
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName LHandSocketName = "LeftHandSocket";
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName RHandSocketName = "RightHandSocket";
 
 	UPROPERTY(EditAnywhere, Category = "Ability")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

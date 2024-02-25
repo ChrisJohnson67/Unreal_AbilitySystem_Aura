@@ -144,10 +144,21 @@ void UAuraAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldC
 			{
 				const bool IsAlive = !ICombatInterface::Execute_IsDead(Overlap.GetActor());
 				if(IsAlive)
-					OutOverlappingActors.Add(Overlap.GetActor());
+					OutOverlappingActors.AddUnique(Overlap.GetActor());
 			}
 		}
 	}
+}
+
+bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondActor)
+{
+	const bool FirstIsPlayer = FirstActor->ActorHasTag(FName("Player"));
+	const bool SecondIsPlayer = SecondActor->ActorHasTag(FName("Player"));
+	const bool FirstIsEnemy = FirstActor->ActorHasTag(FName("Enemy"));
+	const bool SecondIsEnemy = SecondActor->ActorHasTag(FName("Enemy"));
+
+	const bool Friends = (FirstIsPlayer && SecondIsPlayer) || (FirstIsEnemy && SecondIsEnemy);
+	return !Friends;
 }
 
 void UAuraAbilitySystemLibrary::SetIsBlockedHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bIsBlockedHit)

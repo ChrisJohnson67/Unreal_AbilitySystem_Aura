@@ -37,7 +37,7 @@ AAuraEnemy::AAuraEnemy()
 void AAuraEnemy::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	if(!HasAuthority())
+	if (!HasAuthority())
 		return;
 
 	AuraAIController = Cast<AAuraAIController>(NewController);
@@ -78,7 +78,7 @@ void AAuraEnemy::Die()
 
 void AAuraEnemy::SetCombatTarget_Implementation(AActor* InCombatTarget)
 {
-	CombatTarget = CombatTarget;
+	CombatTarget = InCombatTarget;
 }
 
 AActor* AAuraEnemy::GetCombatTarget_Implementation() const
@@ -137,7 +137,9 @@ void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCou
 {
 	bHitReacting = NewCount > 0;
 	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
-	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
+
+	if (AuraAIController && AuraAIController->GetBlackboardComponent())
+		AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
 }
 
 void AAuraEnemy::InitAbilityActorInfo()
