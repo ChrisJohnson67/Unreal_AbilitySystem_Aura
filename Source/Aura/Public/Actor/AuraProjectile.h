@@ -20,7 +20,7 @@ class AURA_API AAuraProjectile : public AActor
 public:
 	AAuraProjectile();
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true))
